@@ -5,3 +5,35 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.create(
+              {
+                first_name: "Ben",
+                last_name: "Leeds",
+                email: "ben@lunchyard.com",
+              }
+)
+
+
+Vendor.create([
+                {
+                  name: "Rocky's Chicken Shack",
+                  description: "Fried Chicken Shack",
+                  address: "Rocky's Boulevard",
+                  last_catered: nil,
+                },
+                {
+                  name: "Taco Billy",
+                  description: "Tacos for Days",
+                  address: "Somewhere in River Arts District",
+                  last_catered: nil,
+                }
+              ])
+
+
+Lunch.create(
+                 vendor_id: 1,
+                 user_id: 1,
+                 occasion: "birthday",
+                 description: "celebration"
+)
