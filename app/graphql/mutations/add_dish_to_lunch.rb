@@ -1,12 +1,17 @@
 module Mutations
   class AddDishToLunch < BaseMutation
-    argument :description, String, required: true
-    argument :url, String, required: true
+    argument :lunch_id, ID, required: true
+    argument :dish_id, ID, required: true
+    argument :quantity, Int, required: false
 
-    type Types::LinkType
+    type Types::LunchDishType
 
-    def resolve(description: nil, url: nil)
-      5
+    def resolve(args)
+      LunchDish.create!({
+        lunch_id: args[:lunch_id],
+        dish_id: args[:dish_id],
+        quantity: args[:quantity]
+      })
     rescue ActiveRecord::RecordInvalid => e
       GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
     end
