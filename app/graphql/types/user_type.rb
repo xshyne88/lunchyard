@@ -2,35 +2,8 @@ Types::UserType = GraphQL::ObjectType.define do
   name 'User'
 
   field :id, !types.ID
-  field :rental_type, !types.String
-  field :occasion, !types.String
-  field :date, !types.String
-  field :description, !types.String
-
-  field :user, Types::UserType do
-    resolve -> (obj, args, ctx) { obj.user }
-  end
+  field :first_name, !types.String
+  field :last_name, types.String
+  field :email, types.String
+  field :birthdate, !types.String
 end
-
-# lunches(sortBy: 'UPCOMING') {
-#   id
-#   occasion
-#   date
-#   description
-#   user {
-#     id
-#     firstName
-#     lastName
-#   }
-#   vendor {
-#     id
-#     name
-#   }
-#   dishes {
-#     id
-#     name
-#     quantity
-#     quantityEaten
-#   }
-# }
-# }'

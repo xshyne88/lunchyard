@@ -3,18 +3,12 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    field :lunches, [Types::LunchType], null: false do
+      argument :sort_by, String, default_value: 'UPCOMING', required: true
     end
 
-    field :lunches, !types[Types::LunchType] do
-      argument :sort_by, types.String, default_value: 'UPCOMING'
-      resolve -> (obj, args, ctx) {
-        Lunches.all
-      }
+    def lunches(arg)
+        Lunch.all.order(:date)
     end
   end
 end
