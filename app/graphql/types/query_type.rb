@@ -1,14 +1,9 @@
-module Types
-  class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
-
-    field :lunches, [Types::LunchType], null: false do
-      argument :sort_by, String, default_value: 'UPCOMING', required: true
-    end
-
-    def lunches(arg)
-        Lunch.all.order(:date)
+Types::QueryType = GraphQL::ObjectType.define do
+  name 'Query'
+    connection :lunches, Types::LunchType.connection_type do
+      argument :sortBy, types.String, 'Column to sort results', as: :sort_by, default_value: 'UPCOMING'
+      resolve -> (obj, args, ctx) {
+        Lunch.all.order(args[:sort_by])
+      }
     end
   end
-end
