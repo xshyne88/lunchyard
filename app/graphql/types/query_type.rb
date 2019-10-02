@@ -6,4 +6,39 @@ Types::QueryType = GraphQL::ObjectType.define do
         Lunch.all()
       }
     end
+
+    field :lunch, Types::LunchType do
+      argument :id, types.ID
+      resolve -> (obj, args, ctx) {
+        Lunch.find(args[:id])
+      }
+    end
+
+    field :vendor, Types::VendorType do
+      argument :id, types.ID
+      resolve -> (obj, args, ctx) {
+        Vendor.find(args[:id])
+      }
+    end
+
+    field :dish, Types::DishType do
+      argument :id, types.ID
+      resolve -> (obj, args, ctx) {
+        Dish.find(args[:id])
+      }
+    end
+
+    field :lunchDish, Types::LunchDishType do
+      argument :id, types.ID
+      resolve -> (obj, args, ctx) {
+        LunchDish.find(args[:id])
+      }
+    end
+
+    field :user, Types::UserType do
+      argument :id, types.ID
+      resolve -> (obj, args, ctx) {
+        User.find(args[:id])
+      }
+    end
   end

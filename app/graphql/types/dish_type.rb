@@ -3,6 +3,7 @@ Types::DishType = GraphQL::ObjectType.define do
   interfaces [GraphQL::Relay::Node.interface]
   global_id_field :id
 
+  field :id, !types.ID
   field :name, !types.String
   field :price, types.String
   field :vendor_id, types.ID

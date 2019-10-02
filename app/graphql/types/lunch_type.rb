@@ -24,7 +24,7 @@ Types::LunchType = GraphQL::ObjectType.define do
   connection :lunchDishes, Types::LunchDishType.connection_type do
     resolve -> (obj, args, ctx) {
 
-      pp LunchDish.where(lunch_id: obj.id).all
+      LunchDish.where(lunch_id: obj.id).all
     }
   end
 end
