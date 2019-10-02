@@ -11,10 +11,10 @@ module Mutations
     def resolve(args)
       Lunch.create!({
         vendor_id: args[:vendor_id],
+        user_id: args[:user_id],
         occasion: args[:occasion],
         description: args[:description],
         date: args[:date],
-        user_id: args[:user_id]
       })
     rescue ActiveRecord::RecordInvalid => e
       GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
