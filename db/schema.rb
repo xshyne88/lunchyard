@@ -72,6 +72,13 @@ ActiveRecord::Schema.define(version: 2019_09_30_152110) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+
+  add_index :lunches, [:date], :unique => true
+  add_index :vendors, [:name], :unique => true
+  add_index :users, [:first_name, :last_name], :unique => true
+  add_index :users, [:email], :unique => true
+  add_index :dishes, [:name], :unique => true
+
   add_foreign_key "dishes", "vendors"
   add_foreign_key "lunch_dishes", "dishes"
   add_foreign_key "lunch_dishes", "lunches"
