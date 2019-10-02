@@ -34,11 +34,13 @@ Vendor.create([
 Dish.create([
   {
     name: "Spicy Chicken",
-    price: "too much money"
+    price: "too much money",
+    vendor_id: 1
   },
   {
     name: "Mild Chicken",
-    price: "not enough money"
+    price: "not enough money",
+    vendor_id: 1
   }
 ])
 
