@@ -7,6 +7,18 @@ Types::QueryType = GraphQL::ObjectType.define do
       }
     end
 
+    connection :vendors, Types::LunchType.connection_type do
+      resolve -> (obj, args, ctx) {
+        Lunch.all()
+      }
+    end
+
+    connection :dishes, Types::LunchType.connection_type do
+      resolve -> (obj, args, ctx) {
+        Dish.all()
+      }
+    end
+
     field :lunch, Types::LunchType do
       argument :id, types.ID
       resolve -> (obj, args, ctx) {
