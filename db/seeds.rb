@@ -11,6 +11,7 @@ User.create(
                 first_name: "Ben",
                 last_name: "Leeds",
                 email: "ben@lunchyard.com",
+                birthdate: "5/10/60"
               }
 )
 
@@ -29,6 +30,17 @@ Vendor.create([
                   last_catered: nil,
                 }
               ])
+
+Dish.create([
+  {
+    name: "Spicy Chicken",
+    quantity: 5
+  },
+  {
+    name: "Mild Chicken",
+    quantity: 30
+  }
+])
 
 
 Lunch.create(
