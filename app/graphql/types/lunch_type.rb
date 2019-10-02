@@ -11,14 +11,20 @@ Types::LunchType = GraphQL::ObjectType.define do
   field :user do
     type Types::UserType
     resolve -> (obj, args, ctx) {
-      User.first()
+      User.find(obj.user_id)
     }
   end
-  field :vendor, Types::UserType do
+
+  field :vendor, Types::VendorType do
     resolve -> (obj, args, ctx) {
-        pp "sup"
-        pp obj
-        Vendor.first()
+      Vendor.find(obj.vendor_id)
+    }
+  end
+
+  connection :lunchDishes, Types::LunchDishType.connection_type do
+    resolve -> (obj, args, ctx) {
+
+      pp LunchDish.where(lunch_id: obj.id).all
     }
   end
 end
