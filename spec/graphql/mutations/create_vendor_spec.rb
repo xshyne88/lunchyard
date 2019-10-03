@@ -4,6 +4,7 @@ require 'graphql'
 
 module Mutations
   class CreateVendor
+    RSpec.describe CreateVendor, type: :request do
     describe '.resolve' do
       it 'creates a vendor' do
         expect do
@@ -29,7 +30,7 @@ module Mutations
     def query
       <<~GQL
         mutation {
-         createVendor(description: 'A Description of a Vendor', address: 'An Address of a Vendor', name: 'Vendor') {
+         createVendor(description: "A Description of a Vendor", address: "An Address of a Vendor", name: "Vendor") {
            id
            name
            description
@@ -37,6 +38,7 @@ module Mutations
           }
         }
       GQL
+    end
     end
   end
 end
