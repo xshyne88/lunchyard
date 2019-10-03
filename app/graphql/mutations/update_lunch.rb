@@ -31,7 +31,6 @@ module Mutations
       # })
 
       l
-      # Foo bar
 
     rescue ActiveRecord::RecordInvalid => e
       GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
