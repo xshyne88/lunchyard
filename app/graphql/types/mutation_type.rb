@@ -7,6 +7,7 @@ module Types
     field :add_dish_to_lunch, mutation: Mutations::AddDishToLunch
 
     # UPDATE
+    field :update_lunch, mutation: Mutations::UpdateLunch
 
     # DELETE
     field :remove_dish_from_lunch, mutation: Mutations::RemoveDishFromLunch
