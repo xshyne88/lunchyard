@@ -30,7 +30,7 @@ module Mutations
       def query()
         <<~GQL
           mutation {
-           createLunch(occasion: "Birthday", userId: 1, vendorId: 1) {
+           createLunch(input: {occasion: "Birthday", userId: 1, vendorId: 1}) {
               id
               occasion
               user {

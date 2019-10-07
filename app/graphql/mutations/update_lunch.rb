@@ -1,34 +1,22 @@
 module Mutations
 
   class UpdateLunch < BaseMutation
-    argument :id, ID, required: true
-    argument :occasion, String, required: false
-    argument :vendor_id, ID, required: false
-    argument :user_id, ID, required: false
-    argument :date, String, required: false
-    argument :description, String, required: false
+    class UpdateLunchInput < Types::BaseInputObject
+      argument :id, ID, required: true
+      argument :occasion, String, required: false
+      argument :vendor_id, ID, required: false
+      argument :user_id, ID, required: false
+      argument :date, String, required: false
+      argument :description, String, required: false
+    end
+
+    argument :input, UpdateLunchInput, required: true
 
     type Types::LunchType
 
-    def required_fields
-      %i{id, occasion, vendor_id, date, user_id, description}.map(&:to_s)
-    end
-
-    def resolve(id:, **attributes)
-      pp attributes
-      l = Lunch.find(id)
-
-      # pp "-0----"
-      # pp args = prune_required(args)
-      l.update!(attributes)
-
-      # l.update!({
-      #   vendor_id: args[:vendor_id],
-      #   user_id: args[:user_id],
-      #   occasion: args[:occasion],
-      #   description: args[:description],
-      #   date: args[:date],
-      # })
+    def resolve(input: input)
+      l = Lunch.find(input.id)
+      l.update!(input.to_h)
 
       l
 

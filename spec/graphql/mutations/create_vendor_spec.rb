@@ -15,7 +15,6 @@ module Mutations
       it 'returns a vendor' do
         post '/graphql', params: { query: query }
         json = JSON.parse(response.body)
-        pp json
         data = json['data']['createVendor']
 
         expect(data).to include(
@@ -30,7 +29,7 @@ module Mutations
     def query
       <<~GQL
         mutation {
-         createVendor(description: "A Description of a Vendor", address: "An Address of a Vendor", name: "Vendor") {
+         createVendor(input: {description: "A Description of a Vendor", address: "An Address of a Vendor", name: "Vendor"}) {
            id
            name
            description

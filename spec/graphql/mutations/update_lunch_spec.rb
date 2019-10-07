@@ -15,7 +15,6 @@ module Mutations
         it "returns a lunch" do
           post "/graphql", params: { query: query() }
           json = JSON.parse(response.body)
-          pp json
           data = json["data"]["updateLunch"]
 
           expect(data).to include(
@@ -28,7 +27,10 @@ module Mutations
       def query()
         <<~GQL
           mutation {
-           updateLunch(id: 1, occasion: "Birthday1") {
+           updateLunch(input: {
+             id: 1,
+             occasion: "Birthday1"
+             }) {
               id
               occasion
           }
