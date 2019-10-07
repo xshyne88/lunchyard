@@ -4,7 +4,7 @@ module Mutations
       argument :occasion, String, required: true
       argument :vendor_id, ID, required: true
       argument :user_id, ID, required: true
-      argument :date, String, required: false
+      argument :date, Types::DateType, required: false
       argument :description, String, required: false
     end
 

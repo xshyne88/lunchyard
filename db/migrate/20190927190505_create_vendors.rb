@@ -4,7 +4,7 @@ class CreateVendors < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :description
       t.string :address
-      t.datetime :last_catered
+      t.date :last_catered
 
       t.timestamps
     end
