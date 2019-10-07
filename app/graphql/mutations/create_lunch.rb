@@ -8,7 +8,7 @@ module Mutations
       argument :description, String, required: false
     end
 
-    argument :input, CreateLunchInput, rquired: true
+    argument :input, CreateLunchInput, required: true
 
     type Types::LunchType
 
