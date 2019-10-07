@@ -9,7 +9,7 @@ Types::QueryType = GraphQL::ObjectType.define do
 
     connection :vendors, Types::LunchType.connection_type do
       resolve -> (obj, args, ctx) {
-        Lunch.all()
+        Vendor.all()
       }
     end
 
