@@ -1,5 +1,4 @@
 module Mutations
-
   class UpdateLunch < BaseMutation
     class UpdateLunchInput < Types::BaseInputObject
       argument :id, ID, required: true
