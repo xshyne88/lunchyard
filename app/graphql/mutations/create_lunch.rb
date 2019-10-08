@@ -12,7 +12,7 @@ module Mutations
 
     type Types::LunchType
 
-    def resolve(input: input)
+    def resolve(input:)
       Lunch.create!({
         vendor_id: input[:vendor_id],
         user_id: input[:user_id],
