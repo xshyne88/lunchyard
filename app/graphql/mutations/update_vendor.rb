@@ -11,7 +11,7 @@ module Mutations
 
     type Types::VendorType
 
-    def resolve(input: input)
+    def resolve(input:)
       l = Vendor.find(input.id)
       l.update!(input.to_h)
       l

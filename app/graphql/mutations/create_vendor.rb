@@ -11,7 +11,7 @@ module Mutations
 
     type Types::VendorType
 
-    def resolve(input: input)
+    def resolve(input:)
       Vendor.create!({
         name: input[:name],
         description: input[:description],

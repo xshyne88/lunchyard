@@ -10,7 +10,7 @@ module Mutations
 
     type Types::LunchDishType
 
-    def resolve(input: input)
+    def resolve(input:)
       LunchDish.create!({
         lunch_id: input[:lunch_id],
         dish_id: input[:dish_id],

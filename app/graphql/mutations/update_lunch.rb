@@ -13,7 +13,7 @@ module Mutations
 
     type Types::LunchType
 
-    def resolve(input: input)
+    def resolve(input:)
       l = Lunch.find(input.id)
       l.update!(input.to_h)
 

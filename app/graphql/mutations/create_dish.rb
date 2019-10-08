@@ -10,7 +10,7 @@ module Mutations
 
     type Types::DishType
 
-    def resolve(input: input)
+    def resolve(input:)
       Dish.create!({
         name: input[:name],
         price: input[:price],

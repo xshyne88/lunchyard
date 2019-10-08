@@ -11,7 +11,7 @@ module Mutations
 
     type Types::UserType
 
-    def resolve(input: input)
+    def resolve(input:)
       User.create!({
         first_name: input[:first_name],
         last_name: input[:last_name],
