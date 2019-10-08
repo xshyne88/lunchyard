@@ -1,10 +1,8 @@
-Types::DishType = GraphQL::ObjectType.define do
-  name 'Dish'
-  interfaces [GraphQL::Relay::Node.interface]
-  global_id_field :id
-
-  field :id, !types.ID
-  field :name, !types.String
-  field :price, types.String
-  field :vendor_id, types.ID
+module Types
+  class DishType < Types::BaseObject
+    field :id, ID, null: false
+    field :name, String, null: false
+    field :price, String, null: true
+    field :vendor_id, ID, null: false
+  end
 end

@@ -1,11 +1,9 @@
-Types::VendorType = GraphQL::ObjectType.define do
-  name 'Vendor'
-  interfaces [GraphQL::Relay::Node.interface]
-  global_id_field :id
-
-  field :id, !types.ID
-  field :name, !types.String
-  field :description, !types.String
-  field :address, !types.String
-  # field :last_catered, !types.DateTime
+module Types
+  class VendorType < Types::BaseObject
+    field :id, ID, null: false
+    field :name, String, null: false
+    field :description, String, null: true
+    field :address, String, null: true
+    # field :last_catered .DateTime
+  end
 end
