@@ -1,60 +1,25 @@
 module Types
   class LunchType < Types::BaseObject
-      field :id, ID, null: false
-      field :occasion, String, null: true
-      field :date, String, null: true
-      field :description, String, null: false
+    field :id, ID, null: false
+    field :occasion, String, null: true
+    field :date, String, null: true
+    field :description, String, null: false
+
+    field :user, Types::UserType, null: false
+    field :vendor, Types::VendorType, null: false
+    field :lunchDishes, Types::LunchDishType, null: false
+
+    def user
+      User.find(object.user_id)
+    end
+
+    def vendor
+      Vendor.find(object.user_id)
+    end
+
+    def lunch_dishes
+      LunchDish.where(lunch_id: object.id).all
+    end
+
   end
 end
-
-#   name 'Lunch'
-#   interfaces [GraphQL::Relay::Node.interface]
-#   global_id_field :id
-
-#   field :id, !types.ID
-#   field :occasion, types.String
-#   field :date, types.String
-#   field :description, types.String
-
-#   field :user do
-#     type Types::UserType
-#     resolve -> (obj, args, ctx) {
-#       User.find(obj.user_id)
-#     }
-#   end
-
-#   field :vendor, Types::VendorType do
-#     resolve -> (obj, args, ctx) {
-#       Vendor.find(obj.vendor_id)
-#     }
-#   end
-
-#   connection :lunchDishes, Types::LunchDishType.connection_type do
-#     resolve -> (obj, args, ctx) {
-
-#       LunchDish.where(lunch_id: obj.id).all
-#     }
-#   end
-# end
-# # lunches(sortBy: 'UPCOMING') {
-# #   id
-# #   occasion
-# #   date
-# #   description
-# #   user {
-# #     id
-# #     firstName
-# #     lastName
-# #   }
-# #   vendor {
-# #     id
-# #     name
-# #   }
-# #   dishes {
-# #     id
-# #     name
-# #     quantity
-# #     quantityEaten
-# #   }
-# # }
-# # }'
