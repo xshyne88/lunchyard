@@ -6,6 +6,7 @@ describe "Lunch Query API", type: :request do
   describe '.lunches' do
     it 'returns lunches sorted by upcoming' do
       result = GraphQLHelpers.execute query, variables: {sortBy: "UPCOMING"}
+      pp result
     end
   end
 
