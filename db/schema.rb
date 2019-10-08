@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_152110) do
     t.bigint "vendor_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_dishes_on_name", unique: true
     t.index ["vendor_id"], name: "index_dishes_on_vendor_id"
   end
 
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_152110) do
     t.bigint "vendor_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["date"], name: "index_lunches_on_date", unique: true
     t.index ["user_id"], name: "index_users_on_vendor_id"
     t.index ["vendor_id"], name: "index_lunches_on_vendor_id"
   end
@@ -61,6 +63,8 @@ ActiveRecord::Schema.define(version: 2019_09_30_152110) do
     t.string "birthdate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["first_name", "last_name"], name: "index_users_on_first_name_and_last_name", unique: true
   end
 
   create_table "vendors", force: :cascade do |t|
@@ -70,13 +74,8 @@ ActiveRecord::Schema.define(version: 2019_09_30_152110) do
     t.datetime "last_catered"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_vendors_on_name", unique: true
   end
-
-  add_index :lunches, [:date], :unique => true
-  add_index :vendors, [:name], :unique => true
-  add_index :users, [:first_name, :last_name], :unique => true
-  add_index :users, [:email], :unique => true
-  add_index :dishes, [:name], :unique => true
 
   add_foreign_key "dishes", "vendors"
   add_foreign_key "lunch_dishes", "dishes"
