@@ -54,9 +54,23 @@ Dish.create([{
   },
 ])
 
-Lunch.create(
+Lunch.create([{
   vendor_id: 1,
   user_id: 1,
   occasion: "birthday",
-  description: "celebration"
-)
+  description: "celebration",
+  date: Date.new(2020, 1, 1),
+},{
+  vendor_id: 1,
+  user_id: 1,
+  occasion: "birthday 2",
+  description: "celebration",
+  date: Date.new(2019, 12, 04),
+  }, {
+  vendor_id: 1,
+  user_id: 1,
+  occasion: "birthday 3",
+  description: "celebration",
+  date: Date.new(2019, 12, 31),
+  }
+])
