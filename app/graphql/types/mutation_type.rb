@@ -13,5 +13,6 @@ module Types
     # DELETE
     field :remove_dish_from_lunch, mutation: Mutations::RemoveDishFromLunch
     field :delete_lunch, mutation: Mutations::DeleteLunch
+    field :delete_vendor, mutation: Mutations::DeleteVendor
   end
 end
