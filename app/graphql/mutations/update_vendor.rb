@@ -15,7 +15,6 @@ module Mutations
       l = Vendor.find(input.id)
       l.update!(input.to_h)
       l
-
     rescue ActiveRecord::RecordInvalid => e
       GraphQL::ExecutionError.new("Invalid input: #{e.record.errors.full_messages.join(', ')}")
     end
