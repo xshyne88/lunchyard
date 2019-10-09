@@ -15,45 +15,14 @@ ActiveRecord::Schema.define(version: 2019_09_30_152110) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "dishes", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "price"
-    t.bigint "vendor_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_dishes_on_name", unique: true
-    t.index ["vendor_id"], name: "index_dishes_on_vendor_id"
-  end
-
-  create_table "lunch_dishes", force: :cascade do |t|
-    t.bigint "lunch_id", null: false
-    t.bigint "dish_id", null: false
-    t.integer "quantity"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["dish_id"], name: "index_lunch_dishes_on_dish_id"
-    t.index ["lunch_id"], name: "index_lunch_dishes_on_lunch_id"
-  end
-
-  create_table "lunches", force: :cascade do |t|
-    t.string "date"
-    t.string "occasion"
+  create_table "vendors", force: :cascade do |t|
+    t.string "name"
     t.string "description"
-    t.bigint "user_id", null: false
-    t.bigint "vendor_id", null: false
+    t.string "address"
+    t.datetime "last_catered"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["date"], name: "index_lunches_on_date", unique: true
-    t.index ["user_id"], name: "index_users_on_vendor_id"
-    t.index ["vendor_id"], name: "index_lunches_on_vendor_id"
-  end
-
-  create_table "names", force: :cascade do |t|
-    t.string "description"
-    t.bigint "vendor_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["vendor_id"], name: "index_names_on_vendor_id"
+    t.index ["name"], name: "index_vendors_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,19 +36,42 @@ ActiveRecord::Schema.define(version: 2019_09_30_152110) do
     t.index ["first_name", "last_name"], name: "index_users_on_first_name_and_last_name", unique: true
   end
 
-  create_table "vendors", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.string "address"
-    t.datetime "last_catered"
+  create_table "dishes", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "price"
+    t.references :vendor, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_vendors_on_name", unique: true
+    t.index ["name"], name: "index_dishes_on_name", unique: true
+  end
+
+  create_table "lunches", force: :cascade do |t|
+    t.string "date"
+    t.string "occasion"
+    t.string "description"
+    t.references :user, null: false
+    t.references :vendor, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["date"], name: "index_lunches_on_date", unique: true
+  end
+
+  create_table "lunch_dishes", force: :cascade do |t|
+    t.references :lunch, foreign_key: true, null: false
+    t.references :dish, foreign_key: true, null: false
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "names", force: :cascade do |t|
+    t.string "description"
+    t.references :vendor, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "dishes", "vendors"
-  add_foreign_key "lunch_dishes", "dishes"
-  add_foreign_key "lunch_dishes", "lunches"
   add_foreign_key "lunches", "users"
   add_foreign_key "lunches", "vendors"
   add_foreign_key "names", "vendors"

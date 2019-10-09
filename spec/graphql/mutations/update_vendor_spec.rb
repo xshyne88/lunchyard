@@ -5,7 +5,7 @@ require "graphql"
 describe "Update Vendor Mutation API", :graphql do
   describe "update vendor" do
     let(:updated_name) do
-        "Updated Vendor"
+      "Updated Vendor"
     end
     let(:updated_description) do
       "Updated Description"
@@ -27,7 +27,7 @@ describe "Update Vendor Mutation API", :graphql do
     end
 
     it "makes a new vendor" do
-      result = execute query, variables: {
+      result = GraphQLHelpers.execute query, variables: {
         input: {
             id: 1,
             name: updated_name,
