@@ -7,7 +7,7 @@ module Types
 
     field :user, Types::UserType, null: false
     field :vendor, Types::VendorType, null: false
-    field :lunchDishes, Types::LunchDishType, null: false
+    field :lunchDishes, Types::LunchDishConnection, null: false
 
     def user
       User.find(object.user_id)
