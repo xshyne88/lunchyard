@@ -3,7 +3,7 @@ module Types
     field :id, ID, null: false
     field :occasion, String, null: true
     field :date, String, null: true
-    field :description, String, null: false
+    field :description, String, null: true
 
     field :user, Types::UserType, null: false
     field :vendor, Types::VendorType, null: false
