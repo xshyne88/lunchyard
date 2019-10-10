@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 2019_09_30_152110) do
     t.references :vendor, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["date"], name: "index_lunches_on_date", unique: true
   end
 
   create_table "lunch_dishes", force: :cascade do |t|
