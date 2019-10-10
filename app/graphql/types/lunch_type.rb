@@ -14,7 +14,7 @@ module Types
     end
 
     def vendor
-      Vendor.find(object.user_id)
+      Vendor.find(object.vendor_id)
     end
 
     def lunch_dishes
