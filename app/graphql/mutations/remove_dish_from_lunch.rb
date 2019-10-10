@@ -1,7 +1,6 @@
 module Mutations
   class RemoveDishFromLunch < BaseMutation
     argument :id, ID, required: true
-    # argument :last_catered, String, required: true
 
     type Types::LunchDishType
 
