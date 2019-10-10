@@ -8,8 +8,8 @@ describe "Lunch Query API", type: :request do
       result = GraphQLHelpers.execute query, variables: {sortBy: "UPCOMING"}
       pp result
 
+
       lunches = result[:data][:lunches][:edges]
-      pp lunches
 
       expect(lunches).to match_array(
         [{"node"=>{"id"=>"2", "occasion"=>"birthday 2"}},
