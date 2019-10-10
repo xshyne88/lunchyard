@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2019_09_30_152110) do
     t.references :vendor, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_dishes_on_name", unique: true
   end
 
   create_table "lunches", force: :cascade do |t|
@@ -70,6 +69,8 @@ ActiveRecord::Schema.define(version: 2019_09_30_152110) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
+
+  add_index(:dishes, [:name, :vendor_id], unique: true)
 
   add_foreign_key "dishes", "vendors"
   add_foreign_key "lunches", "users"
