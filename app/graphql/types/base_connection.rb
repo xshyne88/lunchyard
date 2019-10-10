@@ -16,6 +16,14 @@ class Types::BaseConnection < GraphQL::Types::Relay::BaseConnection
       null: false,
       description: "A list of nodes." if nodes_field
 
+    field :total_count, Integer,
+      null: false,
+      description: "Total objects number of items"
+
+    def total_count
+      object.nodes.size
+    end
+
     description("The connection type for #{node_type_name}.")
   end
 end

@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_152110) do
 
   create_table "dishes", force: :cascade do |t|
     t.string "name", null: false
-    t.string "price"
+    t.bigint "price"
     t.references :vendor, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
