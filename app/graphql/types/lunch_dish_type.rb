@@ -1,5 +1,6 @@
 module Types
   class LunchDishType < Types::BaseObject
+    field :id, ID, null: false
     field :lunch_id, ID, null: false
     field :dish_id, ID, null: false
     field :quantity, Int, null: true
