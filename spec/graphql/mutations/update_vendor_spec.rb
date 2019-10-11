@@ -4,16 +4,6 @@ require "graphql"
 
 describe "Update Vendor Mutation API", :graphql do
   describe "update vendor" do
-    let(:updated_name) do
-      "Updated Vendor"
-    end
-    let(:updated_description) do
-      "Updated Description"
-    end
-    let(:updated_address) do
-      "Updated Address"
-    end
-
     let(:query) do
       <<~'GRAPHQL'
         mutation($input: UpdateVendorInput!) {
@@ -24,25 +14,33 @@ describe "Update Vendor Mutation API", :graphql do
           }
         }
       GRAPHQL
-    end
+  end
 
     it "makes a new vendor" do
+      vendor = create(:vendor)
+
       result = GraphQLHelpers.execute query, variables: {
         input: {
-            id: 1,
-            name: updated_name,
-            description: updated_description,
-            address: updated_address
+            id: vendor.id,
+            name: "Updated Vendor",
+            description: "Updated Description",
+            address: "Updated Address"
         },
       }
       pp result
 
-      vendor = result[:data][:updateVendor]
-      expect(vendor).to eq({
-        "name" => updated_name,
-        "description" => updated_description,
-        "address" => updated_address
-      })
+      vendor_result = result[:data][:updateVendor]
+      expect(vendor_result).to include(
+        name: "Updated Vendor",
+        description: "Updated Description",
+        address: "Updated Address"
+      )
+
+      expect(vendor.reload).to have_attributes(
+        name: "Updated Vendor",
+        description: "Updated Description",
+        address: "Updated Address"
+      )
     end
   end
 end

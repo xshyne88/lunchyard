@@ -20,6 +20,5 @@ module Types
     def lunch_dishes
       LunchDish.where(lunch_id: object.id).all
     end
-
   end
 end
